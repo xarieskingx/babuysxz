@@ -1,34 +1,132 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
-	<title> BABUY</title>
+	<title></title>
 </head>
-<style> 
- body{
- background-image: url(MAIN-5-Pig-grower-finisher-Trouw-Nutrition-11397-c-no-credit.jpg);
- 	background-repeat: no-repeat;
-  	background-attachment: fixed;
- 	background-size: 1400px 800px;
- }
- fieldset{
- 	background-color: azure;
- 	font-size: 30px;
- 	font-weight: bold;
- 	color:black;
- 	border-style: solid;
- 	border-color:black;
- 	border-width: thick;
+<Style>
+.menu{
+	display: block;
+	height: 100px;
+	width: 550px;
+	background-color: darkkhaki;
+
+}
+.number{
+width:200px;
+border: solid;
+border-radius: 5px;
+font-size :10px;
+text-align:center;
+margin-left: 100px;
+
+}
+.amount{
+		display: block;
+	height: 100px;
+	width: 583px;
+}
 
 
+.receipt{
+display:block;
+height: 100px;
+width: 550px;
+background-color: darkkhaki;
+}
+.price{
+	float: right;
+}
+.buy{
+		float: right;
 
-	</style>
 
+}
+.main{
+	height: 240px;
+	width: 280px;
+}
+.pay-wrap{
+	height: 100px;
+	width: 280px;
+}
+</Style>
 <body>
-	<fieldset>
-		<h1><center> BABUY SI SHAYNA UG SII IVY </center></h1>
+	<h1>HOME FOODEY</h1>
+	<fieldset class="main">
+		<fieldset class="menu">
+		<legend>MAIN MENU</legend>
+		<form action="aries.php" method="POST">
+		<div class="cbx">
+		<input type="checkbox" name="list[]" value='0'><label><b> Spinach </label><label class="price">20.00</label>  <input type="number" name="prod1" class= "number" placeholder="Quantity">
+				<br>
+		<input type="checkbox" name="list[]" value='1'><label>Black Beans</label><label class="price">15.00</label>
+		<input type="number" name="prod2" class= "number" placeholder="Quantity">
+		<br>
+		<input type="checkbox" name="list[]" value='2'><label>Walnuts</label><label class="price">25.00</label>
+		<input type="number" name="prod3" class= "number" placeholder="Quantity">
+		<br>
+		<input type="checkbox" name="list[]" value='3'><label>Avocado</label><label class="price">17.00</label>
+        <input type="number" name="prod4" class= "number" placeholder="Quantity">
+		<br>
+		</div>
+		
+		<input type="submit" name="buy" value="Buy Now">
+	</form>
+
 	</fieldset>
-	<fieldset >
-		<p> OINK OINK OINK OINK </p>
-		</fieldset>
-</body>
+	
+	<fieldset class="receipt">
+		<legend>RECEIPT</legend>
+	<?php
+	if(isset($_POST['buy'])){
+$prod1= $_POST['prod1'];
+$prod2= $_POST['prod2'];
+$prod3= $_POST['prod3'];
+$prod4= $_POST['prod4'];
+}
+if(isset($_POST['buy'])){
+	if(!empty($_POST['list'])){
+
+
+	$list = $_POST['list'];
+	$total = 0;
+	foreach ($list as $index) {
+switch ($index) {
+	case '0':
+		$total = 20 * $prod1;
+		echo "You have Chosen ".$prod1."  Spinach. " Subtotal: ".$total."<br>";
+		break;
+	case '1':
+		$total = 15 * $prod2;
+		echo "You have Chosen".$prod2."  Black Beans. " Subtotal: ".$total."<br>";
+		break;
+	case '2':
+		$total = 25 * $prod3;
+		echo "You have Chosen ".$prod3."  Walnuts. " Subtotal: ".$total."<br>";
+
+		break;
+	case '3':
+		$total = 17 * $prod4;
+		echo "You have Chosen".$prod4."  Avocado. " Subtotal: ".$total. "<br>";
+
+		break;
+	default:
+		echo "Please choose at least one.";
+		break;
+}
+
+	}
+echo "Total: ".$total;
+
+}
+else{
+	echo "Please choose at least one";
+}
+}
+
+?>
+</fieldset>
+
+	</body>
+
 </html>
